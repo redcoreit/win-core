@@ -10,8 +10,11 @@ $Winget = {
 
 $Core = {
     winget install --id Microsoft.Powershell --source winget
-    winget install --id Microsoft.WindowsTerminal --source winget
     winget install --id Git.Git --source winget
+}
+
+$Terminal = {
+    winget install --id Microsoft.WindowsTerminal --source winget
 }
 
 $Core_Config = {
@@ -54,6 +57,10 @@ $Tags = $Tags.Split(" ")
 
 powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Winget
 powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Core
+
+if ($Tags.Contains("terminal")) {
+    powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Core
+}
 
 if ($Tags.Contains("dotnet")) {
     powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Dotnet
