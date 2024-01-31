@@ -2,15 +2,15 @@
 
 ## About
 
-Core component install scripts for Windows OS \
-Core components to be installed:
+Standard component install scripts for Windows OS \
+Standard components to be installed:
 - WinGet
 - PowerShell 7
-- Windows Terminal
 - git
 
  What optional component will be installed is controlled by tags (space separated). \
  Available tags are:
+ - no-std: Skip installation of standard components
  - terminal: Install Windows Terminal
  - dotnet: Install .NET 6 SDK
  - vs: Install Visual Studio 2022 Pro with desktop development workload

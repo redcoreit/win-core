@@ -55,8 +55,10 @@ $Vs_Config = {
 Write-Host "Installing with tags '$Tags'..."
 $Tags = $Tags.Split(" ")
 
-powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Winget
-powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Core
+if (-not $Tags.Contains("no-std")) {
+    powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Winget
+    powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Core
+}
 
 if ($Tags.Contains("terminal")) {
     powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Core
@@ -71,4 +73,6 @@ if ($Tags.Contains("vs")) {
     powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Vs_Config
 }
 
-powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Core_Config
+if (-not $Tags.Contains("no-std")) {
+    powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Core_Config
+}
