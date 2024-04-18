@@ -61,7 +61,7 @@ if (-not $Tags.Contains("no-std")) {
 }
 
 if ($Tags.Contains("terminal")) {
-    powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Core
+    powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Terminal
 }
 
 if ($Tags.Contains("dotnet")) {
