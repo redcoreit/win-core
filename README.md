@@ -18,10 +18,21 @@ Standard components to be installed:
 ## Usage
 
 1. Copy the command below, paste it in a PowerShell (admin mode) shell.
-2. Edit tags before pressing enter if needed.
+2. Edit tags before pressing enter if needed (space separated).
 3. After installation is complete, your email address will be asked to set it in `.gitconfig` file.
 
 ```powershell
 "https://github.com/redcoreit/win-core/raw/master/install.ps1" | % { $Tags = "terminal"; (New-Object Net.WebClient).DownloadString($_) | iex }
+```
+
+## Tools
+
+### addpat64
+
+Helper script to add repo access PAT (as base64) to .gitconfig, using include file.
+In case of github, use the whole PAT string, like `github_pat_foo_bar`.
+
+```powershell
+"https://github.com/redcoreit/win-core/raw/master/addpat64.ps1" | % { (New-Object Net.WebClient).DownloadString($_) | iex }
 ```
 
