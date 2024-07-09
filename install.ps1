@@ -52,6 +52,36 @@ $Vs_Config = {
     Invoke-Expression "& '$VsInstallerPath\setup.exe' modify --installPath '$VsPath' --config '.\.vsconfig' --quiet"
 }
 
+$MSVC22Win10 = {
+    $Override = "--wait --passive --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows10SDK"
+    winget install Microsoft.VisualStudio.2022.BuildTools --force --override $Override
+}
+
+$MSVC22Win10_Config = {
+    # Write-Host "PATH: $($env:PATH)`n`nINCLUDE: $($env:INCLUDE)`n`nLIB: $($env:LIB)"
+    # echo PATH: %PATH% && echo. && echo INCLUDE: %INCLUDE% && echo. && echo LIB: %LIB%
+
+    $AddPath = "`$Env:PATH += ';C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.40.33807\bin\HostX86\x86;C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\'"
+    $AddInclude = "`$Env:INCLUDE += ';C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.40.33807\include;C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\VS\include'"
+    $AddLib = "`$Env:LIB += ';C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.40.33807\lib\x86'"
+
+    New-Item -Path (Split-Path $PROFILE -Parent) -ItemType Container -ErrorAction SilentlyContinue
+    New-Item -Path $PROFILE -ItemType File -ErrorAction Stop
+
+    Add-Content -Path $PROFILE -Value $AddPath
+    Add-Content -Path $PROFILE -Value $AddInclude
+    Add-Content -Path $PROFILE -Value $AddLib
+}
+
+$MSVC22Win11 = {
+    $Override = "--wait --passive --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows11SDK.22000"
+    winget install Microsoft.VisualStudio.2022.BuildTools --force --override $Override
+}
+
+$MSVC22Win11_Config = {
+}
+
+
 Write-Host "Installing with tags '$Tags'..."
 $Tags = $Tags.Split(" ")
 
@@ -71,6 +101,13 @@ if ($Tags.Contains("dotnet")) {
 if ($Tags.Contains("vs")) {
     powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Vs
     powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $Vs_Config
+}
+
+if ($Tags.Contains("msvc22-win10")) {
+    powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $MSVC22Win10
+
+    pwsh -ExecutionPolicy Bypass -NoProfile -NoLogo $MSVC22Win10_Config
+    powershell -ExecutionPolicy Bypass -NoProfile -NoLogo $MSVC22Win10_Config
 }
 
 if (-not $Tags.Contains("no-std")) {

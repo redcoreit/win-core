@@ -13,7 +13,9 @@ Standard components to be installed:
  - no-std: Skip installation of standard components
  - terminal: Install Windows Terminal
  - dotnet: Install .NET 6 SDK
+ - msvc22-win10: Visual Studio Build Tools 2022 Win10 (MSVC)
  - vs: Install Visual Studio 2022 Pro with desktop development workload
+
 
 ## Usage
 
