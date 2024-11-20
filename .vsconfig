@@ -15,6 +15,7 @@
     "Microsoft.VisualStudio.Component.SQL.CLR",
     "Microsoft.Component.ClickOnce",
     "Microsoft.VisualStudio.Component.ManagedDesktop.Core",
+    "Microsoft.NetCore.Component.Runtime.9.0",
     "Microsoft.NetCore.Component.Runtime.8.0",
     "Microsoft.NetCore.Component.SDK",
     "Microsoft.VisualStudio.Component.FSharp",
@@ -26,7 +27,6 @@
     "Microsoft.VisualStudio.Component.EntityFramework",
     "Microsoft.VisualStudio.Component.Debugger.JustInTime",
     "Microsoft.VisualStudio.Component.IntelliCode",
-    "Microsoft.NetCore.Component.Runtime.6.0",
     "Microsoft.Net.Component.4.6.2.TargetingPack",
     "Microsoft.VisualStudio.Component.Windows10SDK",
     "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
@@ -35,7 +35,7 @@
     "Microsoft.VisualStudio.Workload.ManagedDesktop",
     "Microsoft.VisualStudio.Component.NuGet.BuildTools",
     "Microsoft.Component.CodeAnalysis.SDK",
-    "Microsoft.NetCore.Component.Runtime.7.0",
     "Microsoft.Net.Component.4.6.1.TargetingPack"
-  ]
+  ],
+  "extensions": []
 }
